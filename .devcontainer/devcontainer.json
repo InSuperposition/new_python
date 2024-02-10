@@ -46,30 +46,29 @@
   3000
  ],
  "onCreateCommand": {
-  "git-config-global": "git config --global --add safe.directory ${containerWorkspaceFolder} && git config --global init.defaultBranch main",
-  "git-config-local": "git config --global user.email $USER_EMAIL && git config --global user.name $USER_NAME",
+  "git-config-global": "git config --global --add safe.directory ${containerWorkspaceFolder} && git config --global init.defaultBranch main && git config --global user.email $USER_EMAIL && git config --global user.name $USER_NAME",
   "git-lfs": "git lfs install"
  },
  "updateContentCommand": {
-  "pip": "pip install --editable '.[dev,test]'"
+  "venv": "chown -R vscode:vscode ${containerWorkspaceFolder}/.venv && python -m venv ${containerWorkspaceFolder}/.venv"
  },
  // Use 'postCreateCommand' to run commands after the container is created.
  "postCreateCommand": {
-  "githooks": "autohooks activate --mode pythonpath"
+  "install": "pip install --editable '.[dev,test]' && autohooks activate --mode pythonpath"
  },
  // Configure tool-specific properties.
  // "customizations": {},
  "containerEnv": {
   "PYTHON_PATH": "${containerEnv:VIRTUAL_ENV}/bin:${containerEnv:PATH}",
-  "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv"
+  "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv",
+  "USER_EMAIL": "your.name@email.domain.com",
+  "USER_NAME": "Your Name"
  },
  "mounts": [
   "source=${localWorkspaceFolderBasename}-.venv,target=${containerWorkspaceFolder}/.venv,type=volume"
  ],
  "remoteEnv": {
-  "PATH": "${containerEnv:PYTHON_PATH}:${containerEnv:PATH}",
-  "USER_EMAIL": "your.name@email.domain.com",
-  "USER_NAME": "Your Name"
+  "PATH": "${containerEnv:PYTHON_PATH}:${containerEnv:PATH}"
  },
  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
  // "remoteUser": "root"
