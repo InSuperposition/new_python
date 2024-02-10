@@ -1,0 +1,80 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+ "name": "Jupyter ♃ 🐍 3.10",
+ "image": "mcr.microsoft.com/devcontainers/python:1-3.10-bookworm",
+ "customizations": {
+  "vscode": {
+   "extensions": [
+    "adpyke.codesnap",
+    "charliermarsh.ruff",
+    "ms-azuretools.vscode-docker",
+    "ms-toolsai.datawrangler",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    "ms-python.isort",
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-toolsai.datawrangler",
+    "ms-toolsai.vscode-jupyter-powertoys",
+    "ms-vscode.live-server",
+    "ms-vscode.remote-explorer",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "ms-vscode-remote.remote-ssh-edit",
+    "ms-vscode.live-server",
+    "ms-vscode.remote-repositories",
+    "ms-vsliveshare.vsliveshare",
+    "njpwerner.autodocstring",
+    "randomfractalsinc.geo-data-viewer",
+    "tamasfe.even-better-toml",
+    "usernamehw.errorlens",
+    "vscode-icons-team.vscode-icons"
+   ],
+   "settings": {
+    "workbench.iconTheme": "vscode-icons"
+   }
+  }
+ },
+ "features": {
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "ghcr.io/devcontainers/features/git-lfs:1": {
+   // "version": "3.4.1"
+  }
+  // "ghcr.io/devcontainers-contrib/features/poetry:2": {
+  //  // "version": "1.7.1"
+  // }
+ },
+ // Use 'forwardPorts' to make a list of ports inside the container available locally.
+ "forwardPorts": [
+  3000
+ ],
+ "onCreateCommand": {
+  "git-config": "git config --global init.defaultBranch main && git config --global user.email $USER_EMAIL && git config --global user.name $USER_NAME && git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "git-lfs": "git lfs install"
+ },
+ // Use 'postCreateCommand' to run commands after the container is created.
+ "postCreateCommand": {
+  "pip": "pip install --editable '.[dev,test]' && autohooks activate --mode pythonpath"
+  // "poetry": "poetry install --with dev --with test && autohooks activate --mode poetry"
+ },
+ // Configure tool-specific properties.
+ // "customizations": {},
+ "containerEnv": {
+  "PYTHON_PATH": "${containerEnv:VIRTUAL_ENV}/bin:${containerEnv:PATH}",
+  "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv",
+  "PATH": "${containerEnv:PYTHON_PATH}:${containerEnv:PATH}"
+  // "POETRY_VIRTUALENVS_PATH": "${containerEnv:VIRTUAL_ENV}"
+ },
+ "remoteEnv": {
+  "USER_EMAIL": "your.name@email.domain.com",
+  "USER_NAME": "Your Name"
+ },
+ // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+ // "remoteUser": "root"
+ "runArgs": [
+  // provies a deterministic name for the container
+  "--name=data_science_python_3.10"
+ ],
+ "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
+ "workspaceFolder": "/home/vscode/workspace"
+}

@@ -4,38 +4,18 @@
 
 ### Rename
 
-1. Change code folder name from `new_python/` to `your_project_name`;  (snake_case_lowercase)
-2. In `pyproject.toml`, change`name` under `tool.poetry` to `your-project-name`; (kebab-case-lowercase)
-3. (**Optional**) Change Python version in `pyproject.toml` under `tool.poetry.dependencies.python` to your desired version.
+Module system name: `snake_case_lowercase`
 
-## Installation
+>Change folder name from `my_module/` to `your_project_name`;  
 
-### Python runtime - PyEnv
+Package name: `kebab-case-lowercase`
 
-```sh
-brew install pyenv
-pyenv install 3.12.1 # (or your desired version)
-```
+>In `[pyproject.toml](./pyproject.toml)`, change `name` under `tool.poetry` to `your-project-name`;
 
-### Package Management - Poetry
+Python version: update in `pyproject.toml`
 
-#### HomeBrew
+## Setup project
 
-```sh
-brew install poetry
-```
+### devcontainer
 
-#### pipx
-
-```sh
-brew install pipx
-pipx ensurepath
-pipx install poetry
-```
-
-#### Install poetry dependencies and `.venv`
-
-```sh
-# in project root
-poetry install
-```
+### Local Machine install

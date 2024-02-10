@@ -1,16 +1,50 @@
-[tool.poetry]
-name = "new-python"
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my-module"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = [{ name = "Your Name", email = "you@example.com" }]
 readme = "readme.md"
+requires-python = ">=3.10,<3.11"
+dependencies = [
+ "ipykernel>=6.29.2,<7.0.0",
+ "tensorflow>=2.15.0,<3.0.0",
+ "scikit-learn>=1.4.0,<2.0.0",
+ "pandas>=2.2.0,<3.0.0",
+ "altair>=5.2.0,<6.0.0",
+ "vega-datasets>=0.9.0,<1.0.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
+[project.scripts]
+"my_module" = "my_module.__main__:main"
 
-[tool.poetry.group.dev.dependencies]
-ipykernel = "^6.27.1"
+[project.optional-dependencies]
+dev = [
+ "autohooks>=24.1.1,<25.0.0",
+ "autohooks-plugin-black>=23.10.0,<24.0.0",
+ "autohooks-plugin-ruff>=24.1.0,<25.0.0",
+ "autohooks-plugin-pytest>=23.10.0,<24.0.0",
+ "autohooks-plugin-isort>=23.10.0,<24.0.0",
+ "jupytext>=1.16.1,<2.0.0",
+ "vl-convert-python>=1.2.3,<2.0.0",
+]
+test = ["pytest>=8.0.0,<9.0.0", "pytest-mock>=3.12.0,<4.0.0"]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.autohooks]
+mode = "pythonpath"
+pre-commit = [
+ "autohooks.plugins.black",
+ "autohooks.plugins.isort",
+ "autohooks.plugins.pytest",
+ "autohooks.plugins.ruff",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.jupytext.formats]
+"notebook/" = "ipynb"
+"script/" = "py:percent"
