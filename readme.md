@@ -16,6 +16,8 @@ Python version: update in `pyproject.toml`
 
 ## Setup project
 
-### devcontainer
+- [devcontainer](https://containers.dev)
 
-### Local Machine install
+OR
+
+- Setup a [local machine installation](./doc/install.md)

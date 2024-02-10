@@ -46,12 +46,16 @@
   3000
  ],
  "onCreateCommand": {
-  "git-config": "git config --global init.defaultBranch main && git config --global user.email $USER_EMAIL && git config --global user.name $USER_NAME && git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "git-config-global": "git config --global init.defaultBranch main && git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "git-config-local": "git config --global user.email $USER_EMAIL && git config --global user.name $USER_NAME",
   "git-lfs": "git lfs install"
+ },
+ "updateContentCommand": {
+  "pip": "pip install --editable '.[dev,test]'"
  },
  // Use 'postCreateCommand' to run commands after the container is created.
  "postCreateCommand": {
-  "pip": "pip install --editable '.[dev,test]' && autohooks activate --mode pythonpath"
+  "pip": "autohooks activate --mode pythonpath"
  },
  // Configure tool-specific properties.
  // "customizations": {},
