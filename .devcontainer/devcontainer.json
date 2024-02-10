@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
- "name": "Jupyter ♃ 🐍 3.10",
+ "name": "My Python Module",
  "image": "mcr.microsoft.com/devcontainers/python:1-3.10-bookworm",
  "customizations": {
   "vscode": {
@@ -40,9 +40,6 @@
   "ghcr.io/devcontainers/features/git-lfs:1": {
    // "version": "3.4.1"
   }
-  // "ghcr.io/devcontainers-contrib/features/poetry:2": {
-  //  // "version": "1.7.1"
-  // }
  },
  // Use 'forwardPorts' to make a list of ports inside the container available locally.
  "forwardPorts": [
@@ -55,17 +52,15 @@
  // Use 'postCreateCommand' to run commands after the container is created.
  "postCreateCommand": {
   "pip": "pip install --editable '.[dev,test]' && autohooks activate --mode pythonpath"
-  // "poetry": "poetry install --with dev --with test && autohooks activate --mode poetry"
  },
  // Configure tool-specific properties.
  // "customizations": {},
  "containerEnv": {
   "PYTHON_PATH": "${containerEnv:VIRTUAL_ENV}/bin:${containerEnv:PATH}",
-  "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv",
-  "PATH": "${containerEnv:PYTHON_PATH}:${containerEnv:PATH}"
-  // "POETRY_VIRTUALENVS_PATH": "${containerEnv:VIRTUAL_ENV}"
+  "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv"
  },
  "remoteEnv": {
+  "PATH": "${containerEnv:PYTHON_PATH}:${containerEnv:PATH}",
   "USER_EMAIL": "your.name@email.domain.com",
   "USER_NAME": "Your Name"
  },
@@ -73,7 +68,7 @@
  // "remoteUser": "root"
  "runArgs": [
   // provies a deterministic name for the container
-  "--name=data_science_python_3.10"
+  "--name=my_module_container_3.10"
  ],
  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
  "workspaceFolder": "/home/vscode/workspace"
