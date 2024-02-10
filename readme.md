@@ -18,6 +18,10 @@ Python version: update in `pyproject.toml`
 
 - [devcontainer](https://containers.dev)
 
+> requires Docker to be installed and running
+
 OR
 
 - Setup a [local machine installation](./doc/install.md)
+
+> Requires creating a Python venv folder, pyenv is optional but recommended.

@@ -46,7 +46,7 @@
   3000
  ],
  "onCreateCommand": {
-  "git-config-global": "git config --global init.defaultBranch main && git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "git-config-global": "git config --global --add safe.directory ${containerWorkspaceFolder} && git config --global init.defaultBranch main",
   "git-config-local": "git config --global user.email $USER_EMAIL && git config --global user.name $USER_NAME",
   "git-lfs": "git lfs install"
  },
@@ -55,7 +55,7 @@
  },
  // Use 'postCreateCommand' to run commands after the container is created.
  "postCreateCommand": {
-  "pip": "autohooks activate --mode pythonpath"
+  "githooks": "autohooks activate --mode pythonpath"
  },
  // Configure tool-specific properties.
  // "customizations": {},
@@ -63,6 +63,9 @@
   "PYTHON_PATH": "${containerEnv:VIRTUAL_ENV}/bin:${containerEnv:PATH}",
   "VIRTUAL_ENV": "${containerWorkspaceFolder}/.venv"
  },
+ "mounts": [
+  "source=${localWorkspaceFolderBasename}-.venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+ ],
  "remoteEnv": {
   "PATH": "${containerEnv:PYTHON_PATH}:${containerEnv:PATH}",
   "USER_EMAIL": "your.name@email.domain.com",
