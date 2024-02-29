@@ -6,11 +6,12 @@
 
 Module system name: `snake_case_lowercase`
 
->Change folder name from `my_module/` to `your_project_name`;  
+> Change folder name from `main_module/` to `your_project_name`;
 
 Package name: `kebab-case-lowercase`
 
->Goto [`pyproject.toml`](./pyproject.toml), change `name` under `tool.poetry` to `your-project-name`;
+> Goto [`pyproject.toml`](./pyproject.toml), change `name` under `tool.poetry`
+> to `your-project-name`;
 
 Python version: update in `pyproject.toml`
 
